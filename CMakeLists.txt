@@ -376,6 +376,7 @@ find_package(Qt${Qt_VERSION_MAJOR} NO_MODULE QUIET OPTIONAL_COMPONENTS
 )
 if (TARGET Qt6::Core)
   set(CMAKE_CXX_STANDARD 17)
+  add_definitions(-DGAMMARAY_QT6_TODO)
 endif ()
 
 # Find these 'exotic' Qt modules without using find_package(... COMPONENTS)

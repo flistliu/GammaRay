@@ -488,8 +488,10 @@ void GuiSupport::registerMetaTypes()
     MO_ADD_PROPERTY_RO(QWheelEvent, source);
 
     MO_ADD_METAOBJECT1(QTabletEvent, QInputEvent);
+#ifndef GAMMARAY_QT6_TODO
     MO_ADD_PROPERTY_RO(QTabletEvent, posF);
     MO_ADD_PROPERTY_RO(QTabletEvent, globalPosF);
+#endif
     MO_ADD_PROPERTY_RO(QTabletEvent, device);
     MO_ADD_PROPERTY_RO(QTabletEvent, pointerType);
     MO_ADD_PROPERTY_RO(QTabletEvent, uniqueId);
@@ -831,9 +833,11 @@ static const MetaEnum::Value<QPainter::RenderHint> painter_render_hint_table[] =
     E(Antialiasing),
     E(TextAntialiasing),
     E(SmoothPixmapTransform),
+#ifndef GAMMARAY_QT6_TODO
     E(HighQualityAntialiasing),
     E(NonCosmeticDefaultPen),
     E(Qt4CompatiblePainting)
+#endif
 };
 #undef E
 
@@ -1004,6 +1008,7 @@ static QString regionToString(const QRegion &region)
         return QStringLiteral("<null>");
     if (region.isEmpty())
         return QStringLiteral("<empty>");
+#ifndef GAMMARAY_QT6_TODO
     if (region.rectCount() == 1)
         return VariantHandler::displayString(region.rects().at(0));
 
@@ -1016,6 +1021,9 @@ static QString regionToString(const QRegion &region)
         VariantHandler::displayString(region.boundingRect()),
         rects.join(QLatin1String("; "))
     );
+#else
+    return "TODO";
+#endif
 }
 
 static QString imageToString(const QImage &image)
